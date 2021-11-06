@@ -32,8 +32,12 @@ function App() {
         <p>What will happen to you today?</p>
         <button onClick = {() => pushMeButtonHandler()}>Push me</button>
         {!isShownLogo && (<img src={logo} className="App-logo" alt="logo" />)}
-        {isShownPrediction && (<p>prediction {predictionGenerator()}</p>)}
-        
+        {isShownPrediction && (
+          <p>
+            <p>Your rediction is: </p>
+            <p> {predictionGenerator()}</p>
+          </p>
+          )}
       </header>
     </div>
   );
