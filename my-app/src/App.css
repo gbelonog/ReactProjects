@@ -41,3 +41,7 @@
   height: 50vh;
   width: 50vh;
 }
+.HeaderBlock {
+  position: fixed;
+  top: 0;
+}

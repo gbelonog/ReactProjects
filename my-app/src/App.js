@@ -33,13 +33,13 @@ function App() {
     const listOfPredictions = {
       0: "All you need is Love",
       1: "Surprize :)",
-      2: "Meet with friend",
+      2: "Meet new friends",
       3: "Good job",
       4: "Keep calm and dive",
       5: "Take it easy",
       6: "Never give up",
       7: "Be strong",
-      8: "Will be ok",
+      8: "Everything will be ok",
       9: "Think positive",
     }
     return listOfPredictions[randomNumberOfPrediction];
@@ -63,17 +63,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>What will happen to you today?</p>
-        <button onClick = {()=>{pushMeButtonHandler();randomGenerator();}}> Push me</button>
-        { !isShownLogo && (<img src={ logo } className="App-logo" alt="logo" />) }
-        { isShownPrediction && (
-          <p>
-            <p>Your prediction is: </p>
-            <p>{ predictionGenerator(randomNumberOfPrediction) } </p> 
-            <img src={ predictionPicGenerator(randomNumberOfPrediction) } className="PredictionPic" alt = ""></img> 
-          
-          </p>
-          ) }
+        <div className="HeaderBlock">
+          <p>What will happen to you today?</p>
+          <button onClick = {()=>{pushMeButtonHandler();randomGenerator();}}> Push me</button>
+        </div>
+        <div>
+          { !isShownLogo && (<img src={ logo } className="App-logo" alt="logo" />) }
+          { isShownPrediction && (
+            <p>
+              <p>Your prediction is: </p>
+              <p>{ predictionGenerator(randomNumberOfPrediction) } </p> 
+              <img src={ predictionPicGenerator(randomNumberOfPrediction) } className="PredictionPic" alt = ""></img> 
+            </p>
+            )
+          }
+        </div>
       </header>
     </div>
   );
