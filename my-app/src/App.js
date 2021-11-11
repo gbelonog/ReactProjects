@@ -1,82 +1,41 @@
-import logo from './logo.svg';
-import allYouNeedIsLove from './predictionsPics/allYouNeedIsLove.jpg';
-import surprize from './predictionsPics/surprize.jpeg';
-import meetNewFrends from './predictionsPics/meetNewFrends.jpeg';
-import goodJob from './predictionsPics/goodJob.jpeg';
-import keepCalm from './predictionsPics/keepCalm.jpeg';
-import takeItEasy from './predictionsPics/takeItEasy.jpeg';
-import neverGiveUp from './predictionsPics/neverGiveUp.jpeg';
-import beStrong from './predictionsPics/beStrong.jpeg';
-import willBeOk from './predictionsPics/willBeOk.jpeg';
-import thinkPositive from './predictionsPics/thinkPositive.jpeg';
-
-import './App.css';
 import React, { useState } from 'react';
+import news from './news.json';
+import './App.css';
+
 
 function App() {
-  let [isShownLogo, showLogo] = useState( false );
-  let [isShownPrediction, showPrediction] = useState( false );
-  let [randomNumberOfPrediction, generateRandomNumber] = useState( 0 );
-
-  function pushMeButtonHandler(){
-    showLogo(!isShownLogo);
-    showPrediction(!isShownPrediction);
+  let [difImage, changeImage] = useState( false );
+  // let [isShownPrediction, showPrediction] = useState( false );
+  function cleanContent(content){
+    return content.split('<p>').map(e=><p>{e.replace('</p>','')}</p>);
   }
 
-  function randomGenerator(){
-    const randomNumberOfPrediction = Math.floor(Math.random() * 10);
-    generateRandomNumber( randomNumberOfPrediction );
-  
-  }
-
-  function predictionGenerator(randomNumberOfPrediction){
-    const listOfPredictions = {
-      0: "All you need is Love",
-      1: "Surprize :)",
-      2: "Meet new friends",
-      3: "Good job",
-      4: "Keep calm and dive",
-      5: "Take it easy",
-      6: "Never give up",
-      7: "Be strong",
-      8: "Everything will be ok",
-      9: "Think positive",
-    }
-    return listOfPredictions[randomNumberOfPrediction];
-  }
-  function predictionPicGenerator(randomNumberOfPrediction){
-    const predictionsPics = {
-      0: allYouNeedIsLove,
-      1: surprize,
-      2: meetNewFrends,
-      3: goodJob,
-      4: keepCalm,
-      5: takeItEasy,
-      6: neverGiveUp,
-      7: beStrong,
-      8: willBeOk,
-      9: thinkPositive,
-    }
-    return predictionsPics[randomNumberOfPrediction];
+  function showNews(){
+    const items = news.map((e) => 
+      <p>
+        <h className={e.id}>{e.title}</h>
+        {e.isSpecial && <h6 style={{ color: 'yellow' }}>It's a special news!!!!!!</h6>}
+        {cleanContent(e.content)}
+        {e.categories.map(e => <li>{e.name}</li>)}
+        {e.link && <a href={e.link}>{e.link}</a>}
+        <p>{e.photo && <img src={e.photo} alt=''></img>}</p>
+        <h6>Author {e.author}</h6>
+        {changeImage()}
+      </p>
+    );
+    console.log(items);
+    news.forEach((e)=>{console.log(e);});
+    return items;
   }
   
   return (
     <div className="App">
       <header className="App-header">
         <div className="HeaderBlock">
-          <p>What will happen to you today?</p>
-          <button onClick = {()=>{pushMeButtonHandler();randomGenerator();}}> Push me</button>
+          <p>Today news</p>
         </div>
         <div>
-          { !isShownLogo && (<img src={ logo } className="App-logo" alt="logo" />) }
-          { isShownPrediction && (
-            <p>
-              <p>Your prediction is: </p>
-              <p>{ predictionGenerator(randomNumberOfPrediction) } </p> 
-              <img src={ predictionPicGenerator(randomNumberOfPrediction) } className="PredictionPic" alt = ""></img> 
-            </p>
-            )
-          }
+            <p>{showNews()}</p>
         </div>
       </header>
     </div>
