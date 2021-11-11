@@ -4,8 +4,9 @@ import './App.css';
 
 
 function App() {
-  let [difImage, changeImage] = useState( false );
+  //let [difImage, changeImage] = useState( false );
   // let [isShownPrediction, showPrediction] = useState( false );
+  
   function cleanContent(content){
     return content.split('<p>').map(e=><p>{e.replace('</p>','')}</p>);
   }
@@ -18,9 +19,9 @@ function App() {
         {cleanContent(e.content)}
         {e.categories.map(e => <li>{e.name}</li>)}
         {e.link && <a href={e.link}>{e.link}</a>}
-        <p>{e.photo && <img src={e.photo} alt=''></img>}</p>
+        <p>{e.photo && <img src={`${e.photo}&key=${e.id}`} alt=''></img>}</p>
+        <p>{e.photo && <img src={e.photo+e.id} alt=''></img>}</p>
         <h6>Author {e.author}</h6>
-        {changeImage()}
       </p>
     );
     console.log(items);
