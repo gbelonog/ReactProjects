@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Content from './components';
 import news from './news.json';
 import './App.css';
 
 
 function App() {
-  //let [difImage, changeImage] = useState( false );
-  // let [isShownPrediction, showPrediction] = useState( false );
-  
-  function cleanContent(content){
-    return content.split('<p>').map(e=><p>{e.replace('</p>','')}</p>);
-  }
-
   function showNews(){
     const items = news.map((e) => 
-      <p>
-        <h className={e.id}>{e.title}</h>
+      <div>
+        <h1 className={e.id}>{e.title}</h1>
         {e.isSpecial && <h6 style={{ color: 'yellow' }}>It's a special news!!!!!!</h6>}
-        {cleanContent(e.content)}
+        <Content content={e.content}/>
         {e.categories.map(e => <li>{e.name}</li>)}
         {e.link && <a href={e.link}>{e.link}</a>}
-        <p>{e.photo && <img src={`${e.photo}&key=${e.id}`} alt=''></img>}</p>
         <p>{e.photo && <img src={e.photo+e.id} alt=''></img>}</p>
-        <h6>Author {e.author}</h6>
-      </p>
+        <h7>Author {e.author}</h7>
+        <h6>Date {e.dateCreated}</h6>
+      </div>
     );
     console.log(items);
     news.forEach((e)=>{console.log(e);});
@@ -36,7 +30,7 @@ function App() {
           <p>Today news</p>
         </div>
         <div>
-            <p>{showNews()}</p>
+            <div>{showNews()}</div>
         </div>
       </header>
     </div>
