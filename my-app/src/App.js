@@ -7,16 +7,20 @@ function App() {
   function showDirs(childrenInside){
     const items = childrenInside.map((e) => 
       (e.type==="dir")?
-        <ul key={e.id}>
+      <ul>
+        <li key={e.id}>
           {e.type} {e.name}
-          <li>
             {showDirs(e.children)}
-          </li>
-        </ul>   
+        </li> 
+      </ul>
+  
     :
+      <ul>
         <li key={e.id}>
           {e.type} {e.name}
         </li>
+      </ul>
+
        
     );
     return items;
