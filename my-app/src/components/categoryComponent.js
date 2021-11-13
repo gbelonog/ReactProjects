@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Category extends Component {
   render() {
-    const category = this.props.category;
+    const { category, id } = this.props;
     return (
-      <div>{category.map(e => <li>{e.name}</li>)}</div>
+      <div key={"category"+id}>{category.map((e, i) => <li key={e.name+i}>{e.name}</li>)}</div>
     );
   }
 }

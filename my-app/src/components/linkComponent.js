@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Link extends Component {
   render() {
-    const link = this.props.link;
+    const { link, id } = this.props;
     return (
-      <div>{link && <a href={link}>{link}</a>}</div>
+      <div key={"link"+id}>{link && <a href={link}>{link}</a>}</div>
     );
   }
 }

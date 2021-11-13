@@ -6,14 +6,14 @@ import './App.css';
 function App() {
   function showNews(){
     const items = news.map((e) => 
-      <div>
-        <Title title={e.title} isSpecial={e.isSpecial}/>
-        <Content content={e.content}/>
-        <Category category={e.categories}/>
-        <Link link={e.link}/>
+      <div key={e.id}>
+        <Title title={e.title} isSpecial={e.isSpecial} id={e.id}/>
+        <Content content={e.content} id={e.id}/>
+        <Category category={e.categories} id={e.id}/>
+        <Link link={e.link} id={e.id}/>
         <Photo photo={e.photo} id={e.id}/>
-        <Author athor={e.author}/>
-        <DateCreated dateCreated={e.dateCreated}/>
+        <Author athor={e.author} id={e.id}/>
+        <DateCreated dateCreated={e.dateCreated} id={e.id}/>
       </div>
     );
     return items;
@@ -22,13 +22,11 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="HeaderBlock">
-          <p>Today news</p>
-        </div>
-        <div>
-            <div>{showNews()}</div>
-        </div>
+          <h1>Today news</h1>
       </header>
+      <div>
+        <div className="News">{showNews()}</div>
+      </div>
     </div>
   );
 }

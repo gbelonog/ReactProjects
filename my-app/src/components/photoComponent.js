@@ -5,7 +5,7 @@ class Photo extends Component {
     const { photo, id } = this.props;
   
     return (
-      <div>{photo && <img src={photo+id} alt=''></img>}</div>
+      <div key={"photo"+id}>{photo && <img src={photo+id} alt=''></img>}</div>
     );
   }
 }
