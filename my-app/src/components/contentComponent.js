@@ -1,17 +1,6 @@
 import React, { Component } from 'react';
-//import propTypes from 'prop-types';
 
-export class Content extends Component {
-//   state = {
-//     value: new Date(),
-//   };
-
-//   tick() {
-//     this.setState({
-//       value: new Date(),
-//     });
-//   }
-
+class Content extends Component {
   componentDidMount() {
     console.log('class component did mount');
   }
@@ -27,7 +16,3 @@ export class Content extends Component {
 }
 
 export default Content;
-
-Content.propTypes = {};
-
-Content.defaultProps = {};
