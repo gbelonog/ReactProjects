@@ -8,7 +8,6 @@ import unknownIcon  from "../icons/unknownIcon.jpeg";
 class ShowDirs extends Component {
   selectFileIcon(name){
     name = name.split('.').pop();
-    console.log(name);
     let nameIcon = '';
     switch (name){
       case 'pdf':
@@ -30,14 +29,14 @@ class ShowDirs extends Component {
     const items = childrenInside.map((e) => 
       (e.type==="dir")?
       <ul key={"ul"+e.id}>
-        <li key={e.id} className="Item">
+        <li className="Item">
           {<img src={ iconFolder } className="IconFolder" alt="" />} {e.name}
           {this.showDirs(e.children)}
         </li> 
       </ul>
     :
       <ul key={"ul"+e.id} className="Item">
-        <li key={e.id}>
+        <li>
           {this.selectFileIcon(e.name)} {e.name}
         </li>
       </ul>       
