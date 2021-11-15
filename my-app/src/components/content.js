@@ -4,15 +4,11 @@ class Content extends Component {
   componentDidMount() {
     console.log('class component did mount');
   }
-    cleanContent(content, id){
-    return content?.split('<p>').map((e,i)=><p key={i+id}>{e.replace('</p>','')}</p>);
-    }
   render() {
     const { content, id } = this.props;
     return (
-      <div key={"content"+id}>{this.cleanContent(content, id)}</div>
+      <div key={"content"+id} dangerouslySetInnerHTML={{ __html: content }} />
     );
   }
 }
-
 export default Content;

@@ -1,10 +1,10 @@
-import Content from "./contentComponent";
-import Category from "./categoryComponent";
-import Link  from "./linkComponent";
-import Photo from "./photoComponent";
-import Title from "./titleComponent";
-import Author from "./authorComponent";
-import DateCreated from "./dateCreatedComponent"
+import Content from "./content";
+import Category from "./category";
+import Link  from "./link";
+import Photo from "./photo";
+import Title from "./title";
+import Author from "./author";
+import DateCreated from "./dateCreated"
 
 export { Content, Category, Link, Photo, Title, Author, DateCreated };
 export default Content;
