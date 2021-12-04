@@ -1,1 +1,1 @@
-export { NewsFilters } from "./newsFilters";
+export { NewsFilters } from "./NewsFilters";

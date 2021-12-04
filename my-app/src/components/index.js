@@ -1,3 +1,3 @@
-export { NewsFilters } from "./newsFilters/newsFilters";
-export { NewsList } from "./newsList";
-export { NewsPage } from "./newsPage";
+export { NewsFilters } from "./NewsFilters/NewsFilters";
+export { NewsList } from "./NewsList";
+export { NewsPage } from "./NewsPage";

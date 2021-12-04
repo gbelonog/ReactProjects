@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { NewsFilters } from './newsFilters/newsFilters';
-import { NewsList } from './newsList';
+import { NewsFilters } from './NewsFilters/NewsFilters';
+import { NewsList } from './NewsList';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -9,10 +9,12 @@ class NewsPage extends Component {
       specialFilter: false,
       linkPresenceFilter: false,
       photoPresenceFilter: false,
+      searchTextFilterValue: '',
     };
     this.specialFilterHandler = this.specialFilterHandler.bind(this);
     this.linkPresenceHandler = this.linkPresenceHandler.bind(this);
     this.photoPresenceHandler = this.photoPresenceHandler.bind(this);
+    this.searchTextHandler = this.searchTextHandler.bind(this);
   }
 
   specialFilterHandler(){
@@ -27,17 +29,24 @@ class NewsPage extends Component {
     this.setState({ photoPresenceFilter: !this.state.photoPresenceFilter });
   }
 
+  searchTextHandler(value){
+    this.setState({ searchTextFilterValue: value });
+    console.log(this.state);
+  }
+
   render() {
     return <div>
       <NewsFilters 
         specialFilterHandler = {this.specialFilterHandler} 
         linkPresenceHandler = {this.linkPresenceHandler}
         photoPresenceHandler = {this.photoPresenceHandler}
+        searchTextHandler = {this.searchTextHandler}
       />
       <NewsList 
         specialFilter = {this.state.specialFilter} 
         linkPresenceFilter = {this.state.linkPresenceFilter}
         photoPresenceFilter = {this.state.photoPresenceFilter}
+        searchTextFilterValue = {this.state.searchTextFilterValue}
       />
     </div>;
   }

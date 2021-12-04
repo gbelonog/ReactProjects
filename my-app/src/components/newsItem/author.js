@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 class Author extends Component {
   render() {
-    const { athor} = this.props;
-    return <h5>Author: {athor}</h5>;
+    const { author} = this.props;
+    return <h5>Author: { author}</h5>;
   }
 }
 
 Author.propTypes = {
-  athor: PropTypes.string,
+  author: PropTypes.string,
 }
 
 Author.defaultProps = {
-  athor: "",
+  author: "",
 };
 
 export { Author };

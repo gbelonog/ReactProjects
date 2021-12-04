@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './newsFilters.css'
+import './NewsFilters.css'
 
 class NewsFilters extends Component {
   render() {
-    const { specialFilterHandler, linkPresenceHandler, photoPresenceHandler } = this.props;
+    const { specialFilterHandler, linkPresenceHandler, photoPresenceHandler, searchTextHandler } = this.props;
 
     return(
       <div className="Filters">Filters:
@@ -20,21 +20,27 @@ class NewsFilters extends Component {
           <input type="checkbox" onClick={ () => {photoPresenceHandler(true)}} ></input>
           Photo
         </label>
+        <label className="Filter">
+          Search text
+          <input type="text" onChange={event =>{searchTextHandler(event.target.value)}} ></input>
+        </label>
       </div>
     );
   }
 }
 
 NewsFilters.propTypes = {
-  specialFilterHandler: PropTypes.func,
-  linkPresenceHandler: PropTypes.func, 
-  photoPresenceHandler: PropTypes.func,
+  specialFilterHandler: PropTypes.func.isRequired,
+  linkPresenceHandler: PropTypes.func.isRequired, 
+  photoPresenceHandler: PropTypes.func.isRequired,
+  searchTextHandler: PropTypes.func.isRequired,
 }
 
 NewsFilters.defaultProps = {
   specialFilterHandler: ()=>{},
   linkPresenceHandler: ()=>{}, 
   photoPresenceHandler: ()=>{},
+  searchTextHandler: ()=>{},
 };
 
 export { NewsFilters };
