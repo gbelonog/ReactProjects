@@ -10,11 +10,13 @@ class NewsPage extends Component {
       linkPresenceFilter: false,
       photoPresenceFilter: false,
       searchTextFilterValue: '',
+      categoriesList: [],
     };
     this.specialFilterHandler = this.specialFilterHandler.bind(this);
     this.linkPresenceHandler = this.linkPresenceHandler.bind(this);
     this.photoPresenceHandler = this.photoPresenceHandler.bind(this);
     this.searchTextHandler = this.searchTextHandler.bind(this);
+    this.categoriesListHandler = this.categoriesListHandler.bind(this);
   }
 
   specialFilterHandler(){
@@ -31,8 +33,17 @@ class NewsPage extends Component {
 
   searchTextHandler(value){
     this.setState({ searchTextFilterValue: value });
-    console.log(this.state);
   }
+
+categoriesListHandler(category){
+  let indexOfCategory = this.state.categoriesList.indexOf(category)
+   if(indexOfCategory === -1){
+      this.setState({ categoriesList: (this.state.categoriesList).concat(category) });
+    }else{
+      this.setState({ categoriesList: this.state.categoriesList.splice(indexOfCategory+1, 1)});
+    }
+  }
+  
 
   render() {
     return <div>
@@ -41,12 +52,14 @@ class NewsPage extends Component {
         linkPresenceHandler = {this.linkPresenceHandler}
         photoPresenceHandler = {this.photoPresenceHandler}
         searchTextHandler = {this.searchTextHandler}
+        categoriesListHandler = {this.categoriesListHandler}
       />
       <NewsList 
         specialFilter = {this.state.specialFilter} 
         linkPresenceFilter = {this.state.linkPresenceFilter}
         photoPresenceFilter = {this.state.photoPresenceFilter}
         searchTextFilterValue = {this.state.searchTextFilterValue}
+        categoriesList = {this.state.categoriesList}
       />
     </div>;
   }
