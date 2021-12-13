@@ -11,7 +11,8 @@ export class NewsForm extends Component {
     text: '',
     photo: '',
     hashTags: [],
-    author: ''
+    author: '',
+    error: null
   };
 
   handleSubmit = (e) => {
@@ -19,8 +20,7 @@ export class NewsForm extends Component {
     const id = faker.datatype.uuid();
     const news = {
       id,
-      ...this.state,
-      genres: this.state.genre,
+      ...this.state
     };
     this.props.onAddNewsItem(news);
   };
@@ -71,13 +71,15 @@ export class NewsForm extends Component {
         text,
         photo,
         hashTags,
-        author
+        author,
+        error
     } = this.state;
 
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
             <div>Title:<input value={title} onChange={this.handleChangeText} type="text" name="title" /></div>
+            {error && (<span style={{ color: 'red' }}>{error}</span>)}
             <div>Short Description:<textarea value={shortDescription} onChange={this.handleChangeText} name="shortDescription"/></div>
             <div>Text:<textarea value={text} onChange={this.handleChangeText} name="text"/></div>
             <div>Photo:
