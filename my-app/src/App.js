@@ -1,10 +1,10 @@
 import './App.css';
-import StarShips from './StarShips/StarShips';
+import MainPage from './components/MainPage';
 
 function App() {
   return (
     <div className="App">
-      <StarShips />
+      <MainPage />
     </div>
   );
 }
