@@ -18,8 +18,6 @@ export class MainPage extends Component {
   }
 
   searchHandler(){
-    // if(this.state.searchState){this.setState({searchState: false})}
-    //     else {this.setState({searchState: true})}
     this.setState({ searchState: !this.state.searchState })
   }
 
