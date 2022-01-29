@@ -12,8 +12,6 @@ export class StarShips extends Component {
       previous: null,
       next: "https://swapi.dev/api/starships/?page=2",
       page: "https://swapi.dev/api/starships/?page=1",
-      flagForDidUpdate: false,
-      flagForPages: false
     };
   }
 
@@ -101,14 +99,13 @@ export class StarShips extends Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     console.log('---> StarShips: componentDidUpdate');
     if (this.props.searchState !== prevProps.searchState) {
       this.fetchSearchData();
     }
-    if(this.state.flagForDidUpdate){
+    if(prevState.page !== this.state.page){
       this.fetchData();
-      this.setState({flagForDidUpdate: false})
     }
   }
 
@@ -129,25 +126,13 @@ export class StarShips extends Component {
                   <div>Nothing was found</div>
                 ) : (
                 <div>
-                  {!!previous && (<button onClick={() => {
-                    this.setState({page:previous});
-                    this.setState({flagForDidUpdate:true});
-                  }}>previous</button>)}
-                  {!!previous && (<button onClick={() => {
-                    this.setState({page:previous});
-                    this.setState({flagForDidUpdate:true});
-                  }}>{previous?.slice(previous.indexOf('=')+1)}</button>)}
+                  {!!previous && (<button onClick={() => this.setState({page:previous})}>previous</button>)}
+                  {!!previous && (<button onClick={() => this.setState({page:previous})}>{previous?.slice(previous.indexOf('=')+1)}</button>)}
                   
                   <button>{(page.slice(page.indexOf('=')+1))}</button>
               
-                  {!!next &&<button onClick={() => {
-                    this.setState({page:next});
-                    this.setState({flagForDidUpdate:true});
-                  }}>{next?.slice(next.indexOf('=')+1)}</button>} 
-                  {!!next &&<button onClick={() => {
-                    this.setState({page:next});
-                    this.setState({flagForDidUpdate:true});
-                  }}>next</button>}             
+                  {!!next &&<button onClick={() => this.setState({page:next})}>{next?.slice(next.indexOf('=')+1)}</button>} 
+                  {!!next &&<button onClick={() => this.setState({page:next})}>next</button>}             
                 <p></p>
                   {data.map(e=>{
                     return <div key={e.name}>
